@@ -1247,4 +1247,6 @@ if getprop ro.vendor.build.fingerprint | grep -iq -e Rebecco/K70_ROW; then
 fi
 
 # Enable pen mode on Lenovo/goodix
-echo 1 > /sys/devices/platform/goodix_ts.0/support_pen
+if [ -e /sys/devices/platform/goodix_ts.0/support_pen ]; then
+    echo 1 > /sys/devices/platform/goodix_ts.0/support_pen
+fi
