@@ -1125,7 +1125,6 @@ if getprop ro.build.overlay.deviceid |grep -iq -e RMX2185 -e RMX1941 -e RMX1945 
     setprop persist.sys.overlay.devinputjack true
 fi
 
-resetprop_phh ro.bluetooth.library_name libbluetooth.so
 
 board="$(getprop ro.board.platform)"
 
@@ -1302,9 +1301,6 @@ if getprop ro.product.vendor.device | grep -q -e TECNO-LG8n; then
     chown -R system:system /sys/class/leds/vibrator_single/
 fi
 
-# Override media volume steps
-resetprop_phh ro.config.media_vol_steps 25
-resetprop_phh ro.config.media_vol_default 8
 
 # Force disable Sunlight Reading Mode to prevent weird color issues
 if getprop ro.vendor.build.fingerprint | grep -iq -e xiaomi/renoir; then
