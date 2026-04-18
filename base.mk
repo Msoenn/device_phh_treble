@@ -196,9 +196,7 @@ PRODUCT_PACKAGES += \
     android.hardware.biometrics.fingerprint@2.1-service.oplus.compat \
 
 PRODUCT_PACKAGES += \
-    vr_hwc \
-    curl \
-    healthd \
+    curl
 
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     debug.fdsan=warn_once \
