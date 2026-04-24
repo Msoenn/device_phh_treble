@@ -47,6 +47,15 @@ if [ -z "$udc_state" ] || [ "$udc_state" = "none" ]; then
     fi
 fi
 
+# Restart fingerprint HAL after USB gadget recovery. The USB gadget reset
+# can disconnect the biometrics HAL's connection to the TEE (trusted
+# execution environment), causing fingerprint enrollment/auth to fail
+# with a generic error. Restarting the HAL re-establishes the TEE session.
+if [ -z "$udc_state" ] || [ "$udc_state" = "none" ]; then
+    setprop ctl.restart vendor.fps_hal
+    setprop ctl.restart vendor.biometrics-hal-1
+fi
+
 setprop ctl.start media.swcodec
 
 for i in wpa p2p;do
