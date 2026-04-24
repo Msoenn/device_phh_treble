@@ -375,6 +375,17 @@ for part in /dev/block/bootdevice/by-name/oppodycnvbk  /dev/block/platform/bootd
     fi
 done
 
+# Disable touch firmware update on OPPO/Realme MTK devices to prevent
+# kernel panic from td4320_nf driver during boot.  The driver triggers
+# a kernel panic during firmware change on some devices (notably OPPO F11
+# CPH1911 MT6771).  Writing 0 to the firmware update flag prevents the
+# driver from attempting the update.
+for node in /proc/touchpanel/fw_update /sys/devices/platform/tpd/fw_update; do
+    if [ -f "$node" ]; then
+        echo 0 > "$node" 2>/dev/null
+        log -t rw-system "Disabled touch fw update at $node"
+    fi
+done
 
 mkdir -p /mnt/phh/
 mount -t tmpfs -o rw,nodev,relatime,mode=755,gid=0 none /mnt/phh || true
