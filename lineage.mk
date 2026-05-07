@@ -15,3 +15,5 @@ PRODUCT_PACKAGES += apns-conf.xml
 
 #Oplus fingerprint
 $(call soong_config_set,surfaceflinger,udfps_lib,//hardware/oplus:libudfps_extension.oplus)
+
+TARGET_SYSTEM_PROP += device/phh/treble/system.prop
