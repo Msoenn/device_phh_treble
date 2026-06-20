@@ -4,7 +4,7 @@ $(call inherit-product, vendor/lineage/config/BoardConfigLineage.mk)
 $(call inherit-product, device/lineage/sepolicy/common/sepolicy.mk)
 -include vendor/lineage/build/core/config.mk
 
-PRODUCT_DEVICE := generic_arm64
+PRODUCT_DEVICE := generic_a64
 PRODUCT_MANUFACTURER := google
 
 # Bootanimation

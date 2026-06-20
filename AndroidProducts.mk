@@ -5,7 +5,7 @@
 #
 
 PRODUCT_MAKEFILES += \
-    $(LOCAL_DIR)/lineage_arm64_bgN4.mk \
-    $(LOCAL_DIR)/lineage_arm64_bgNE.mk \
-    $(LOCAL_DIR)/lineage_arm64_bvN4.mk \
-    $(LOCAL_DIR)/lineage_arm64_bvNE.mk
+    $(LOCAL_DIR)/lineage_a64_bgN4.mk \
+    $(LOCAL_DIR)/lineage_a64_bgNE.mk \
+    $(LOCAL_DIR)/lineage_a64_bvN4.mk \
+    $(LOCAL_DIR)/lineage_a64_bvNE.mk

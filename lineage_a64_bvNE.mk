@@ -1,18 +1,18 @@
-TARGET_GAPPS_ARCH := arm64
-include build/make/target/product/aosp_arm64.mk
+TARGET_GAPPS_ARCH := arm
+include build/make/target/product/aosp_arm.mk
 $(call inherit-product, device/phh/treble/base.mk)
 
-$(call inherit-product-if-exists, vendor/gapps/arm64/arm64-vendor.mk)
+
 $(call inherit-product, device/phh/treble/lineage.mk)
 
-PRODUCT_NAME := lineage_arm64_bgNE
+PRODUCT_NAME := lineage_a64_bvNE
 PRODUCT_BRAND := google
 PRODUCT_MODEL := Generic System
 
 # Overwrite the inherited "emulator" characteristics
 PRODUCT_CHARACTERISTICS := device
 
-LINEAGE_BUILDTYPE := GAPPS
+LINEAGE_BUILDTYPE := VANILLA
 LINEAGE_BUILD := GSI
 
 #EROFS
