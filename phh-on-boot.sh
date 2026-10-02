@@ -1,5 +1,11 @@
 #!/system/bin/sh
 
+# Securize is on unless /metadata/securize_disable exists (TrebleApp toggle) or the build turns it
+# off with ro.phh.securize.default=0.
+phh_securize_enabled() {
+    [ "$(getprop ro.phh.securize.default)" != 0 ] && [ ! -f /metadata/securize_disable ]
+}
+
 # Disable restricted networking mode on devices without working BPF.
 # Android 14+ uses BPF firewall chains to enforce restricted_networking_mode.
 # On older kernels where BPF maps failed to load, the restricted chain cannot
@@ -26,7 +32,7 @@ if [ ! -f /sys/fs/fuse/features/fuse_bpf ]; then
 fi
 # spoof post-boot props
 # should be applied after boot complete to prevent breaking device features
-if [ ! -f /metadata/securize_disable ]; then
+if phh_securize_enabled; then
   resetprop_phh ro.build.user nobody
   resetprop_phh ro.build.host android-build
   resetprop_phh ro.build.tags release-keys

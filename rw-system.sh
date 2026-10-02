@@ -805,6 +805,12 @@ if getprop ro.vendor.build.fingerprint | grep -iq -e motorola/paros; then
 fi
 
 setprop ctl.stop console
+# Securize is on unless /metadata/securize_disable exists (TrebleApp toggle) or the build turns it
+# off with ro.phh.securize.default=0.
+phh_securize_enabled() {
+    [ "$(getprop ro.phh.securize.default)" != 0 ] && [ ! -f /metadata/securize_disable ]
+}
+
 copyprop() {
     p="$(getprop "$2")"
     if [ "$p" ]; then
@@ -874,7 +880,7 @@ else
     resetprop_phh -n persist.pm.mock-upgrade false
 fi
 
-if [ ! -f /metadata/securize_disable ]; then
+if phh_securize_enabled; then
     copyprop ro.build.device ro.vendor.build.device
     copyprop ro.system.build.fingerprint ro.vendor.build.fingerprint
     copyprop ro.bootimage.build.fingerprint ro.vendor.build.fingerprint
